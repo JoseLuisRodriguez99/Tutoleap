@@ -10,35 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815153653) do
+ActiveRecord::Schema.define(version: 20180822053853) do
 
-  create_table "areas", force: :cascade do |t|
-    t.string "nombre"
+  create_table "documents", force: :cascade do |t|
+    t.string "tipo"
+    t.string "archivo"
+    t.string "estado"
+    t.integer "user_document_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_document_id"], name: "index_documents_on_user_document_id"
   end
 
-  create_table "lugars", force: :cascade do |t|
+  create_table "places", force: :cascade do |t|
     t.string "nombre"
     t.string "direccion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "materia", force: :cascade do |t|
-    t.string "nombre"
-    t.integer "area_id"
+  create_table "qualifications", force: :cascade do |t|
+    t.integer "valor"
+    t.string "descripcion"
+    t.integer "user_estudiante_id"
+    t.integer "user_docente_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["area_id"], name: "index_materia_on_area_id"
+    t.index ["user_docente_id"], name: "index_qualifications_on_user_docente_id"
+    t.index ["user_estudiante_id"], name: "index_qualifications_on_user_estudiante_id"
   end
 
-  create_table "usuarios", force: :cascade do |t|
+  create_table "subjects", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tutorials", force: :cascade do |t|
+    t.datetime "fecha"
+    t.string "nombre"
+    t.string "descripcion"
+    t.string "modalidad"
+    t.float "presupuesto"
+    t.integer "place_id"
+    t.integer "subject_id"
+    t.integer "user_estudiante_id"
+    t.integer "user_docente_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_tutorials_on_place_id"
+    t.index ["subject_id"], name: "index_tutorials_on_subject_id"
+    t.index ["user_docente_id"], name: "index_tutorials_on_user_docente_id"
+    t.index ["user_estudiante_id"], name: "index_tutorials_on_user_estudiante_id"
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "documento"
     t.string "nombre"
     t.string "direccion"
     t.string "telefono"
     t.string "email"
+    t.string "nive_academico"
+    t.string "tipo_user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

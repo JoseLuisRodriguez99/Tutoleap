@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-resources :usuarios
-resources :areas do 
-    resources :materias
-end
 
-resources :lugars
+  resources :users do 
+    resources :documents
+    resources :qualifications    
+end
+resources :subjects
+resources :tutorials
+resources :places
+
+
 end
