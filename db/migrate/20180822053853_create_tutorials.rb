@@ -6,8 +6,8 @@ class CreateTutorials < ActiveRecord::Migration[5.1]
       t.string :descripcion
       t.string :modalidad
       t.float :presupuesto
-      t.references :place, foreign_key: true
-      t.references :subject, foreign_key: true
+      t.references :place_tutorial, index: true, foreign_key: {to_table: :tutorials}
+      t.references :subject_tutorial, index: true, foreign_key: {to_table: :subjects}
       t.references :user_estudiante, index: true, foreign_key: {to_table: :users}
       t.references :user_docente, index: true, foreign_key: {to_table: :users}
       t.timestamps

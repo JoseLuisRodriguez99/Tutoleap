@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
         before_action :set_user, only: [:show, :update, :destroy]
-    
+        skip_before_action :authorize_request, only: :create
+
         # GET /users
         def index
           @users =User.all
@@ -9,8 +10,12 @@ class UsersController < ApplicationController
       
         # POST /users
         def create
-          @user = User.create!(user_params)
-          json_response(@user, :created)
+          user = User.create!(user_params)
+           #  json_response(@user, :created)
+          auth_token = AuthenticateUser.new(user.email, user.password).call
+          response = { message: Message.account_created, auth_token: auth_token }
+          json_response(response, :created)
+       
         end
       
         # GET /users/:id
@@ -34,7 +39,7 @@ class UsersController < ApplicationController
       
         def user_params
           # whitelist params
-          params.permit(:nombre,:documento, :direccion, :telefono, :email,:tipo_user, :nivel_academico)
+          params.permit(:nombre,:documento, :direccion, :telefono, :email,:tipo_user, :nivel_academico, :password)
         end
       
         def set_user

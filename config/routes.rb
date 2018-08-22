@@ -8,5 +8,7 @@ resources :subjects
 resources :tutorials
 resources :places
 
-
+post 'auth/login', to: 'authentication#authenticate'
+  post 'signup', to: 'users#create'
+  
 end

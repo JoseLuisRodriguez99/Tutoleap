@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 20180822053853) do
     t.string "descripcion"
     t.string "modalidad"
     t.float "presupuesto"
-    t.integer "place_id"
-    t.integer "subject_id"
+    t.integer "place_tutorial_id"
+    t.integer "subject_tutorial_id"
     t.integer "user_estudiante_id"
     t.integer "user_docente_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_tutorials_on_place_id"
-    t.index ["subject_id"], name: "index_tutorials_on_subject_id"
+    t.index ["place_tutorial_id"], name: "index_tutorials_on_place_tutorial_id"
+    t.index ["subject_tutorial_id"], name: "index_tutorials_on_subject_tutorial_id"
     t.index ["user_docente_id"], name: "index_tutorials_on_user_docente_id"
     t.index ["user_estudiante_id"], name: "index_tutorials_on_user_estudiante_id"
   end
@@ -72,7 +72,8 @@ ActiveRecord::Schema.define(version: 20180822053853) do
     t.string "telefono"
     t.string "email"
     t.string "nive_academico"
-    t.string "tipo_user"
+    t.string "tipo_use"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
