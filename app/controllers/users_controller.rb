@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       
         def user_params
           # whitelist params
-          params.permit(:nombre,:documento, :direccion, :telefono, :email,:tipo_user, :nivel_academico, :password)
+          params.permit(:nombre,:documento, :direccion, :telefono, :email,:tipo_user, :nive_academico, :password)
         end
       
         def set_user
