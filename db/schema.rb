@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20180822053853) do
     t.string "telefono"
     t.string "email"
     t.string "nive_academico"
-    t.string "tipo_use"
+    t.string "tipo_user"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
